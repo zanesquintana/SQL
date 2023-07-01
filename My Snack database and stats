@@ -1,0 +1,23 @@
+CREATE TABLE chocolate_candy_snacks(id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER, price INTEGER, aisle INTEGER);
+INSERT INTO chocolate_candy_snacks VALUES ( 1, "m&ms", 10, 2, 2);
+INSERT INTO chocolate_candy_snacks VALUES ( 2, "doritos", 1, 1, 1);
+INSERT INTO chocolate_candy_snacks VALUES ( 3, "gummy worms", 56, 3, 5); 
+INSERT INTO chocolate_candy_snacks VALUES (4, "hersheys", 22, 1,2);
+INSERT INTO chocolate_candy_snacks VALUES (5, "cheetos", 39, 2, 1);
+INSERT INTO chocolate_candy_snacks VALUES (6, "gummy worms", 100, 5, 3); 
+INSERT INTO chocolate_candy_snacks VALUES (7, "resee's", 0, 1, 2);
+INSERT INTO chocolate_candy_snacks VALUES (8, "lay's", 33, 3, 1);
+INSERT INTO chocolate_candy_snacks VALUES (9, "kitkat", 60,5,2);
+INSERT INTO chocolate_candy_snacks VALUES (10, "cry baby", 22, 1,3);
+INSERT INTO chocolate_candy_snacks VALUES (11, "goya", 41,1,4);
+INSERT INTO chocolate_candy_snacks VALUES (12, "cloud 9", 88,1,4);
+INSERT INTO chocolate_candy_snacks VALUES (13, "ruffles", 43,2,1);
+INSERT INTO chocolate_candy_snacks VALUES (14, "twix", 28,3,2);
+INSERT INTO chocolate_candy_snacks VALUES (15, "nerds", 8,2,3);
+
+--Display the item by price in ascending order--
+SELECT * FROM chocolate_candy_snacks
+ORDER BY price asc;
+
+--Display the quantity of item each aisle--
+SELECT aisle, SUM(quantity) FROM chocolate_candy_snacks GROUP BY aisle;
