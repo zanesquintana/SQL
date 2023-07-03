@@ -1,0 +1,60 @@
+CREATE TABLE singers (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, song TEXT);
+
+INSERT INTO singers
+    VALUES (1, "Taylor Swift", 33, "Cruel Summer");
+INSERT INTO singers
+    VALUES (2, "Celine Dion", 55, "My Heart Will Go On");
+INSERT INTO singers VALUES (3, "Lady Gaga", 37, "Bad Romance");
+INSERT INTO singers VALUES (4,"Hikaru Utada",40,"First Love");
+INSERT INTO singers VALUES (5,"Justin Beiber",29,"Beauty and the Beat");
+INSERT INTO singers VALUES (6,"Lea Salonga",52,"Reflection");
+INSERT INTO singers VALUES (7,"Sarah Geronimo",34,"Tala");
+INSERT INTO singers VALUES (8,"Ed Sheeran",32,"Shape of You");
+INSERT INTO singers VALUES (9,"Hideto Takarai",54,"Ready Steady Go");
+INSERT INTO singers VALUES (10,"Harry Styles",29,"As It Was");
+INSERT INTO singers VALUES (11,"IU",30,"Palette");
+INSERT INTO singers VALUES (12,"Thalia",51,"Marimar");
+INSERT INTO singers VALUES (13,"Kylie Minogue",55,"Padam Padam");
+INSERT INTO singers VALUES (14,"Sia",47,"Chandelier");
+INSERT INTO singers VALUES (15,"G-Dragon",34,"Crooked");
+
+
+CREATE TABLE birthplace (id INTEGER PRIMARY KEY, singer_id INTEGER,place_of_birth TEXT);
+
+INSERT INTO birthplace VALUES (1, 1,"USA");
+INSERT INTO birthplace VALUES (2, 2,"Canada");
+INSERT INTO birthplace VALUES (3, 3,"USA");
+INSERT INTO birthplace VALUES (4,4,"Japan");
+INSERT INTO birthplace VALUES (5,5, "Canada");
+INSERT INTO birthplace Values (6,6, "Philippines");
+INSERT INTO birthplace VALUES (7,7, "Philippines");
+INSERT INTO birthplace VALUES (8,8, "UK");
+INSERT INTO birthplace VALUES (9,9,"Japan");
+INSERT INTO birthplace VALUES (10,10,"UK");
+INSERT INTO birthplace VALUES (11,11,"Korea");
+INSERT INTO birthplace VALUES (12,12,"Mexico");
+INSERT INTO birthplace VALUES (13,13,"Australia");
+INSERT INTO birthplace VALUES (14,14,"Australia");
+INSERT INTO birthplace VALUES (15,15,"Korea");
+
+CREATE TABLE compatriot (id INTEGER PRIMARY KEY, singer1_id INTEGER,singer2_id INTEGER);
+
+INSERT INTO compatriot VALUES (1,1,3);
+INSERT INTO compatriot VALUES (2,2,5);
+INSERT INTO compatriot VALUES (3,4,9);
+INSERT INTO compatriot VALUES (4,6,7);
+INSERT INTO compatriot VALUES (5,8,10);
+INSERT INTO compatriot VALUES (6,11,15);
+INSERT INTO compatriot VALUES (7,12,Null);
+INSERT INTO compatriot VALUES (8,13,14);
+
+-I want to see who are those singers from the same country-
+-I used join syntax to combine the datas that I needed to see the result I wanted-
+
+SELECT a.name, b.name,place_of_birth FROM compatriot
+JOIN birthplace 
+ON birthplace.singer_id=a.id
+JOIN singers a
+ON a.id=compatriot.singer1_id
+LEFT OUTER JOIN singers b
+ON b.id=compatriot.singer2_id;
