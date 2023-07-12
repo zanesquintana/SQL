@@ -147,11 +147,17 @@ ON ii.TrackId=t.TrackId
 GROUP BY t.Name) t
 
 #19. Most Popular Genre bought in USA?
-SELECT g.name, Count(*), BillingCountry
+SELECT g.name, Count(*) AS total_number, BillingCountry
 FROM chinook.genres g
 JOIN chinook.tracks t
 ON g.GenreID=t.genreID
-JOIN chinook.invoice_items ii
+INNER JOIN chinook.invoice_items ii
+ON ii.TrackId=t.trackid
+JOIN chinook.invoices i
+ON i.InvoiceId=ii.InvoiceId
+WHERE BillingCountry = 'USA'
+GROUP BY g.Name
+ORDER BY total_number desc LIMIT 1
 ON ii.TrackId=t.trackid
 JOIN chinook.invoices i
 ON i.InvoiceId=ii.InvoiceId
