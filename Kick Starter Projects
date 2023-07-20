@@ -1,0 +1,23 @@
+#For this project I analyzed hundred of thousands of Kickstarter Projects.
+
+#Here are some of my questioned answered using queries in SQL:
+
+#1. How many of this projects by each category and status.
+SELECT Category, Count(Category) as Total_Count, State FROM Bit_DB.KickStarterProjects
+GROUP BY Category, State
+
+#2 Show how the status of the projects by each country.
+SELECT Country, Count(State), State FROM BIT_DB.KickStarterProjects
+GROUP BY Country, State
+
+
+#3 In which Category Company kickctarted  failed the most in 2009?
+SELECT  Category,Count(Category) AS Total FROM BIT_DB.KickStarterProjects
+WHERE State = "Failed" AND Launched LIKE "%2009%"
+GROUP BY Category
+ORDER BY Total desc LIMIT 1
+
+#4 What are the Top 10 most backed projects and which category?
+SELECT Name, Category,Launched, MAX(backers) AS Total, State FROM BIT_DB.KickStarterProjects
+GROUP BY Name, Category, State
+ORDER BY Total desc LIMIT 10
